@@ -34,18 +34,6 @@ Money moneySingleton = new Money(10, 5);
 moneySingleton.GetExchangeRatesAsync(Currency.EUR, Currency.AUD, Currency.CNY, Currency.EUR);
 ```
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Authors
 
 * **Ariel Amor García** - *Main Contributor* - [Ariel Amor](https://github.com/Djangoum)
