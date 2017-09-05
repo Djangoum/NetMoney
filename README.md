@@ -25,10 +25,13 @@ The main class of NetMoney is **Money** wich must be treated as a singleton. The
 **Usage Example**
 
 ```
+using NetMoney;
+using NetMoney.Core;
+
 //Must be treated as a singleton
 Money moneySingleton = new Money(10, 5);
 
-moneySingleton.GetExchangeRatesAsync(Currency.EUR, DateTime.Now, Currency.AUD, Currency.CNY, Currency.EUR);
+moneySingleton.GetExchangeRatesAsync(Currency.EUR, Currency.AUD, Currency.CNY, Currency.EUR);
 ```
 
 ## Running the tests
