@@ -31,6 +31,11 @@ namespace NetMoney
             return await circuitBreaker.Call(new ExchangeCurrencies(From, to, Date));
         }
 
+        public async Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, params Currency[] to)
+        {
+            return await circuitBreaker.Call(new ExchangeCurrencies(From, to, null));
+        }
+
         internal async Task<ExchangeRates> GetFixerIoRates(ExchangeCurrencies exchangeCurrencies)
         {
             string uri = FixerIo.FixerIoEndPoint;
