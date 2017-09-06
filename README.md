@@ -48,6 +48,9 @@ using NetMoney.Core;
 Money moneySingleton = new Money(10, 5);
 
 await moneySingleton.From(Currency.EUR, 1000m).To(Currency.DKK);
+
+// with date filtering
+await moneySingleton.From(Currency.EUR, 1000m).FromDate(DateTime.Now).To(Currency.DKK);
 ```
 
 ## Authors
