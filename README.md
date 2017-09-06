@@ -1,4 +1,8 @@
 # NetMoney
+
+[![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/filp/whoops.svg)](https://www.nuget.org/packages/NetMoney/)
+[![nuget](https://img.shields.io/badge/nuget-v0.0.3-orange.svg)](https://www.nuget.org/packages/NetMoney/)
+
 NetMoney is an open source library focused on making currency exchange rating an easy and safe task for .NET developers. 
 
 NetMoney provides provides a thread safe communication environment with the [Fixer.io](http://fixer.io/) API using the [Circuit Breaker](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker) pattern and thread safe code.
