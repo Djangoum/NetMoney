@@ -53,6 +53,25 @@ await moneySingleton.From(Currency.EUR, 1000m).To(Currency.DKK);
 await moneySingleton.From(Currency.EUR, 1000m).FromDate(DateTime.Now).To(Currency.DKK);
 ```
 
+**Adding and substraction**
+
+NetMoney let you add and substract currencies. To add and substract currencies you are not asked to do a previous conversion, NetMoney do it for you only if it's necesary.
+
+```
+using NetMoney;
+using NetMoney.Core;
+
+//Must be treated as a singleton
+Money moneySingleton = new Money(10, 5);
+
+IConvertedCurreny australianDolars = await moneySingleton.From(Currency.EUR, 1000m).To(Currency.AUD);
+IConvertedCurrency yuans = await moneySingleton.From(Currency.USD, 1000m).To(Currency.CNY);
+
+australianDolars = australianDolars.Sum(yuans);
+
+australianDolars = australiaDolars.Substract(yuans);
+```
+
 ## Authors
 
 * **Ariel Amor García** - *Main Contributor* - [Ariel Amor](https://github.com/Djangoum)
