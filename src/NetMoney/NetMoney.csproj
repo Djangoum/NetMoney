@@ -4,12 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>Ariel Amor García</Authors>
     <Company>Tokiota S.L</Company>
     <Description>NetMoney  is an open source library focused on making currency exchange rating an easy task.</Description>
-    <AssemblyVersion>0.0.0.3</AssemblyVersion>
-    <FileVersion>0.0.0.3</FileVersion>
+    <AssemblyVersion>0.0.0.4</AssemblyVersion>
+    <FileVersion>0.0.0.4</FileVersion>
     <PackageLicenseUrl>https://github.com/Djangoum/NetMoney/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://djangoum.github.io/NetMoney/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Djangoum/NetMoney</RepositoryUrl>
