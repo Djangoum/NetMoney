@@ -1,7 +1,7 @@
 # NetMoney
 
 [![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/filp/whoops.svg)](https://www.nuget.org/packages/NetMoney/)
-[![nuget](https://img.shields.io/badge/nuget-v0.0.4-orange.svg)](https://www.nuget.org/packages/NetMoney/)
+[![nuget](https://img.shields.io/badge/nuget-v0.0.5-orange.svg)](https://www.nuget.org/packages/NetMoney/)
 
 NetMoney is an open source library focused on making currency exchange rating an easy and safe task for .NET developers. 
 
@@ -13,11 +13,11 @@ NetMoney consumes the [Fixer.io](http://fixer.io/) API to have daily updated dat
 
 Easy Installing through Nuget package manager: 
 ```
-Install-Package NetMoney -Version 0.0.4
+Install-Package NetMoney -Version 0.0.5
 ```
 
 ```
-dotnet add package NetMoney --version 0.0.4
+dotnet add package NetMoney --version 0.0.5
 ```
 
 ### Usage
