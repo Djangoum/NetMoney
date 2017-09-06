@@ -18,8 +18,6 @@ dotnet add package NetMoney --version 0.0.1
 
 ### Usage
 
-The basic usage: 
-
 The main class of NetMoney is **Money** wich must be treated as a singleton. The method that let you retrieve exchange rates is *GetExchangeRatesAsync*  
 
 **Usage Example**
@@ -31,7 +29,21 @@ using NetMoney.Core;
 //Must be treated as a singleton
 Money moneySingleton = new Money(10, 5);
 
-moneySingleton.GetExchangeRatesAsync(Currency.EUR, Currency.AUD, Currency.CNY, Currency.EUR);
+await moneySingleton.GetExchangeRatesAsync(Currency.EUR, Currency.AUD, Currency.CNY, Currency.EUR);
+```
+
+**Fluent Api Usage**
+
+NetMoney also provides a simple fluent api syntax sugar for those who feel more comfortable with this syntax.
+
+```
+using NetMoney;
+using NetMoney.Core;
+
+//Must be treated as a singleton
+Money moneySingleton = new Money(10, 5);
+
+await moneySingleton.From(Currency.EUR, 1000m).To(Currency.DKK);
 ```
 
 ## Authors
