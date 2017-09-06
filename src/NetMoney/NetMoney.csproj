@@ -16,6 +16,9 @@
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>money, currency, exchange</PackageTags>
     <NeutralLanguage />
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
