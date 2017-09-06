@@ -13,11 +13,11 @@ NetMoney consumes the [Fixer.io](http://fixer.io/) API to have daily updated dat
 
 Easy Installing through Nuget package manager: 
 ```
-Install-Package NetMoney -Version 0.0.1
+Install-Package NetMoney -Version 0.0.4
 ```
 
 ```
-dotnet add package NetMoney --version 0.0.1
+dotnet add package NetMoney --version 0.0.4
 ```
 
 ### Usage
