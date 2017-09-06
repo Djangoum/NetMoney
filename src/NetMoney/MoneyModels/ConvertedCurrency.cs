@@ -12,10 +12,11 @@
 
         internal Money money { get; set; }
 
-        internal ConvertedCurrency(Currency currency, decimal amount)
+        internal ConvertedCurrency(Currency currency, decimal amount, Money money)
         {
             Currency = currency;
             Amount = amount;
+            this.money = money;
         }
 
         public async Task<IConvertedCurrency> To(Currency currency)
@@ -23,9 +24,9 @@
             return await money.From(Currency, Amount).To(currency);
         }
 
-        internal static IConvertedCurrency Create(Currency currency, decimal amount)
+        internal static IConvertedCurrency Create(Currency currency, decimal amount, Money money)
         {
-            return new ConvertedCurrency(currency, amount);
+            return new ConvertedCurrency(currency, amount, money);
         }
     }
 }

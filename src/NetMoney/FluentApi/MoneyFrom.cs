@@ -27,7 +27,7 @@
 
         public async Task<IConvertedCurrency> To(Currency currency)
         {
-            return ConvertedCurrency.Create(currency, (await Money.GetExchangeRatesAsync(From, Date, currency)).Rates[currency] * Amount);
+            return ConvertedCurrency.Create(currency, (await Money.GetExchangeRatesAsync(From, Date, currency)).Rates[currency] * Amount, Money);
         }
     }
 }
