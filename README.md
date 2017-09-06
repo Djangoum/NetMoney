@@ -5,9 +5,9 @@
 
 NetMoney is an open source library focused on making currency exchange rating an easy and safe task for .NET developers. 
 
-NetMoney provides provides a thread safe communication environment with the [Fixer.io](http://fixer.io/) API using the [Circuit Breaker](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker) pattern and thread safe code.
+NetMoney provides provides a thread safe communication environment with the [Fixer.io](http://fixer.io/) open source API using the [Circuit Breaker](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker) pattern and thread safe code.
 
-NetMoney consumes the [Fixer.io](http://fixer.io/) API to have daily updated data. [Fixer.io](http://fixer.io/) is an open source API, [Fixer.io](http://fixer.io/) data is obtained from the [ECB](http://www.ecb.europa.eu/) public API.
+[Fixer.io](http://fixer.io/) is an open source API, [Fixer.io](http://fixer.io/) data is obtained from the [ECB](http://www.ecb.europa.eu/) public API.
 
 ### Installing
 
