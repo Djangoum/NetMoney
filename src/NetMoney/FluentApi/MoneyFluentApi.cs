@@ -2,7 +2,6 @@
 {
     using NetMoney.Core;
 
-
     public static class MoneyFluentApi
     {
         public static MoneyFrom From(this Money money, Currency currency, decimal amount)
