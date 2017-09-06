@@ -27,9 +27,9 @@ namespace NetMoney
             return this;
         }
 
-        public async Task<ExchangeRates> To(params Currency[] currencies)
+        public async Task<decimal> To(Currency currency)
         {
-            return await Money.GetExchangeRatesAsync(From, Date, currencies);
+            return (await Money.GetExchangeRatesAsync(From, Date, currency)).Rates[currency] * Amount;
         }
     }
 }
