@@ -1,10 +1,10 @@
-﻿using NetMoney.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace NetMoney.MoneyModels
 {
+    using NetMoney.Core;
+    using System;
+
     internal class ExchangeCurrencies
     {
         internal Currency[] To { get; set; }

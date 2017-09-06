@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace NetMoney.CircuitBreaker
+﻿namespace NetMoney.CircuitBreaker
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     internal class CircuitBreaker<TReq, TRep>
     {
         // _state and _wasProbed are ints because of use Interlocked methods

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetMoney.CircuitBreaker
+﻿namespace NetMoney.CircuitBreaker
 {
+    using System;
+
     internal class CircuitBreakerConfiguration
     {
         internal CircuitBreakerConfiguration(TimeSpan? serviceTimeOut, TimeSpan? openTimeOut)

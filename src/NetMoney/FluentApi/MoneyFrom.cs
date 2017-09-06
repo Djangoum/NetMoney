@@ -1,12 +1,10 @@
-﻿using NetMoney.Core;
-using NetMoney.MoneyModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NetMoney
+﻿namespace NetMoney
 {
+    using NetMoney.Core;
+    using NetMoney.MoneyModels;
+    using System;
+    using System.Threading.Tasks;
+
     public class MoneyFrom
     {
         internal Currency From { get; set; }
@@ -27,9 +25,9 @@ namespace NetMoney
             return this;
         }
 
-        public async Task<decimal> To(Currency currency)
+        public async Task<IConvertedCurrency> To(Currency currency)
         {
-            return (await Money.GetExchangeRatesAsync(From, Date, currency)).Rates[currency] * Amount;
+            return ConvertedCurrency.Create(currency, (await Money.GetExchangeRatesAsync(From, Date, currency)).Rates[currency] * Amount);
         }
     }
 }

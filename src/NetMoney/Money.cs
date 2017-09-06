@@ -1,14 +1,12 @@
-﻿using NetMoney.CircuitBreaker;
-using NetMoney.Core;
-using NetMoney.MoneyModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NetMoney
+﻿namespace NetMoney
 {
+    using NetMoney.CircuitBreaker;
+    using NetMoney.Core;
+    using NetMoney.MoneyModels;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class Money
     {
         private readonly CircuitBreaker<ExchangeCurrencies, ExchangeRates> circuitBreaker;

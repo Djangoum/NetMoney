@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-
-namespace NetMoney.CircuitBreaker
+﻿namespace NetMoney.CircuitBreaker
 {
+    using System;
+    using System.Runtime.Serialization;
+
     /// <summary>
     /// Exception thrown when circuit breaker is called while in either Open state 
     /// or in HalfOpen state for each call except the first one.

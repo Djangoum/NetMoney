@@ -1,10 +1,9 @@
-﻿using NetMoney.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NetMoney.MoneyModels
+﻿namespace NetMoney.MoneyModels
 {
+    using NetMoney.Core;
+    using System;
+    using System.Collections.Generic;
+
     public class ExchangeRates
     {
         public Currency Base { get; set; }
