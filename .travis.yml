@@ -5,3 +5,5 @@ dist: trusty
 solution: NetMoney.sln
 script:
  - dotnet restore
+ - dotnet build
+ - dotnet test
