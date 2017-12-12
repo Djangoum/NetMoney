@@ -7,7 +7,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
 
     <AssemblyOriginatorKeyFile>NetMoney.Tests.snk</AssemblyOriginatorKeyFile>
 

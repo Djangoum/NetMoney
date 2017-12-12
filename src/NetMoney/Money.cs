@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo(assemblyName: "NetMoney.Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100818b297ecd2fd20160ad91e70b20d40038146f32a1d050fe6f4b2c16ef06570f56c7315adf238a7c64a88d2df65cfe3f70df10f9c10c34bc762368d00d4624af6d71bf625c7ba7c22157ed0307b57a23548710c290153c86eae37f838aafed15a48ffd900216d317ee45783b111a5b5f4bd99557c956bf309a31ae07a6348ac1")]
+[assembly: InternalsVisibleTo(assemblyName: "NetMoney.Test")]
 
 namespace NetMoney
 {
