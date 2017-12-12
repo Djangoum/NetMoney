@@ -6,4 +6,4 @@ solution: NetMoney.sln
 script:
  - dotnet restore
  - dotnet build
- - dotnet test
+ - dotnet test --all
