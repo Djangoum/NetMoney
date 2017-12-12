@@ -1,5 +1,2 @@
 language: csharp
-mono: none
 solution: NetMoney.sln
-os:
-  - linux
