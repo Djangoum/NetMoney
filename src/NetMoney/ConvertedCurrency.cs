@@ -6,16 +6,6 @@
 
     internal class ConvertedCurrency : IConvertedCurrency, IEquatable<IConvertedCurrency>
     {
-        public decimal Amount { get; private set; }
-
-        public Currency Currency { get; private set; }
-
-        internal IMoney money { get; set; }
-
-        internal DateTime? InternalDate { get; set; }
-
-        public DateTime? Date => InternalDate;
-
         internal ConvertedCurrency(Currency currency, decimal amount, DateTime? date, IMoney money)
         {
             InternalDate = date;
@@ -23,6 +13,16 @@
             Amount = amount;
             this.money = money;
         }
+
+        public decimal Amount { get; private set; }
+
+        public Currency Currency { get; private set; }
+
+        public DateTime? Date => InternalDate;
+
+        internal IMoney money { get; set; }
+
+        internal DateTime? InternalDate { get; set; }
 
         public async Task<IConvertedCurrency> To(Currency currency)
             => Create(currency, (await money.GetExchangeRatesAsync(Currency, Date, currency)).Rates[currency] * Amount, money);
@@ -39,9 +39,6 @@
         public Task<IConvertedCurrency> Substract(Currency currency, decimal amount)
                 => Task.FromResult(this - Create(currency, amount, money));
 
-        internal static IConvertedCurrency Create(Currency currency, decimal amount, IMoney money)
-            => new ConvertedCurrency(currency, amount, null, money);
-
         public bool Equals(IConvertedCurrency other)
         {
             if (Currency == other.Currency)
@@ -50,20 +47,23 @@
             }
             IConvertedCurrency currency;
 
-            currency = !Date.HasValue ? money.From(other.Currency, other.Amount).To(this.Currency).GetAwaiter().GetResult():
+            currency = !Date.HasValue ? money.From(other.Currency, other.Amount).To(this.Currency).GetAwaiter().GetResult() :
                 money.FromDate(other.Currency, other.Amount, Date.Value).To(this.Currency).GetAwaiter().GetResult();
 
             return Equals(currency);
         }
 
         public bool Equals(Currency currency, decimal amount)
-            => Equals(Create(currency, amount, money));   
+            => Equals(Create(currency, amount, money));
 
         public IConvertedCurrency FromDate(DateTime date)
         {
             InternalDate = date;
             return this;
         }
+
+        internal static IConvertedCurrency Create(Currency currency, decimal amount, IMoney money)
+            => new ConvertedCurrency(currency, amount, null, money);
 
         public static IConvertedCurrency operator +(ConvertedCurrency currency, IConvertedCurrency addingCurrency)
         {

@@ -12,7 +12,9 @@ namespace NetMoney
 
     public class Money : IMoney
     {
-        internal CircuitBreaker<ExchangeCurrencies, ExchangeRates> circuitBreaker { get; set; }
+        public Money(TimeSpan? serviceTimeOut, TimeSpan? openTimeOut) : this(new CircuitBreakerConfiguration(serviceTimeOut, openTimeOut)) { }
+
+        public Money(int serviceTimeOutSeconds, int openTimeOutSeconds) : this(new TimeSpan(0, 0, serviceTimeOutSeconds), new TimeSpan(0, 0, openTimeOutSeconds)) { }
 
         internal Money(CircuitBreakerConfiguration configuration) 
             => circuitBreaker = new CircuitBreaker<ExchangeCurrencies, ExchangeRates>(
@@ -20,9 +22,7 @@ namespace NetMoney
                 configuration.ServiceTimeOut,
                 configuration.OpenTimeOut);
 
-        public Money(TimeSpan? serviceTimeOut, TimeSpan? openTimeOut) : this(new CircuitBreakerConfiguration(serviceTimeOut, openTimeOut)) { }
-
-        public Money(int serviceTimeOutSeconds, int openTimeOutSeconds) : this(new TimeSpan(0, 0, serviceTimeOutSeconds), new TimeSpan(0, 0, openTimeOutSeconds)) { }
+        internal CircuitBreaker<ExchangeCurrencies, ExchangeRates> circuitBreaker { get; set; }
 
         public async Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, DateTime? Date = null, params Currency[] to)
             => await circuitBreaker.Call(new ExchangeCurrencies(From, to, Date));

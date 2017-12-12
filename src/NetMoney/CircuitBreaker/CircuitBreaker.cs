@@ -7,33 +7,6 @@
 
     internal class CircuitBreaker<TReq, TRep>
     {
-        // _state and _wasProbed are ints because of use Interlocked methods
-
-        private int _state = (int)CircuitBreakerState.Closed;
-
-        /// <summary>
-        /// Flag determining if first call was requested while in HalfOpen state.
-        /// </summary>
-        private int _wasProbed = 0;
-
-        /// <summary>
-        /// Service to be handled by the circuit breaker.
-        /// </summary>
-        private readonly Func<TReq, Task<TRep>> _service;
-
-        /// <summary>
-        /// Timeout for service call. If service won't respond until timeout occurs, 
-        /// circuit breaker becomes <see cref="CircuitBreakerState.Closed"/>.
-        /// </summary>
-        internal readonly TimeSpan ServiceTimeout;
-
-        /// <summary>
-        /// Timeout for closed state. After switching to <see cref="CircuitBreakerState.Closed"/>,
-        /// circuit breaker can remain in that state only for specified timeout. Then it becomes
-        /// <see cref="CircuitBreakerState.HalfOpen"/>.
-        /// </summary>
-        internal readonly TimeSpan OpenedTimeout;
-
         /// <summary>
         /// Create new instance of the <see cref="CircuitBreaker"/> class working as a facade
         /// to access provided <paramref name="service"/> call.
@@ -57,6 +30,34 @@
         {
             get { return (CircuitBreakerState)_state; }
         }
+
+
+        /// <summary>
+        /// Timeout for service call. If service won't respond until timeout occurs, 
+        /// circuit breaker becomes <see cref="CircuitBreakerState.Closed"/>.
+        /// </summary>
+        internal readonly TimeSpan ServiceTimeout;
+
+        /// <summary>
+        /// Timeout for closed state. After switching to <see cref="CircuitBreakerState.Closed"/>,
+        /// circuit breaker can remain in that state only for specified timeout. Then it becomes
+        /// <see cref="CircuitBreakerState.HalfOpen"/>.
+        /// </summary>
+        internal readonly TimeSpan OpenedTimeout;
+
+        // _state and _wasProbed are ints because of use Interlocked methods
+
+        private int _state = (int)CircuitBreakerState.Closed;
+
+        /// <summary>
+        /// Flag determining if first call was requested while in HalfOpen state.
+        /// </summary>
+        private int _wasProbed = 0;
+
+        /// <summary>
+        /// Service to be handled by the circuit breaker.
+        /// </summary>
+        private readonly Func<TReq, Task<TRep>> _service;
 
         /// <summary>
         /// Performs an async call to underlying service. If it will fail or won't finish in specified 
