@@ -10,9 +10,7 @@
         private static HttpClient client { get; set; }
 
         static HttpClientWrapper()
-        {
-            client = new HttpClient();
-        }
+            => client = new HttpClient();
 
         internal static async Task<TResult> Get<TResult>(string endpointUri)
         {
@@ -21,8 +19,6 @@
         }
 
         public void Dispose()
-        {
-            client.Dispose();
-        }
+            => client?.Dispose();
     }
 }

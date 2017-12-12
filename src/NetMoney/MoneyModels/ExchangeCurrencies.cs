@@ -1,8 +1,6 @@
-﻿
-
-namespace NetMoney.MoneyModels
+﻿namespace NetMoney.MoneyModels
 {
-    using NetMoney.Core;
+    using Core;
     using System;
 
     internal class ExchangeCurrencies
@@ -14,7 +12,7 @@ namespace NetMoney.MoneyModels
         internal ExchangeCurrencies(Currency? From, Currency[] To, DateTime? Date)
         {
             if (From == null)
-                this.From = Currency.EUR;
+                throw new ArgumentNullException("Currency from is needed");
             else
                 this.From = From.Value;
 

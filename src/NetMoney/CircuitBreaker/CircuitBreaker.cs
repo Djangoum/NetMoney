@@ -131,9 +131,7 @@
         }
 
         private async Task<TRep> CallOpen(TReq request)
-        {
-            throw await Task.FromResult(new CircuitBreakerOpenException("Circuit breaker is open. Default time left for become half opened is " + OpenedTimeout));
-        }
+            => throw await Task.FromResult(new CircuitBreakerOpenException("Circuit breaker is open. Default time left for become half opened is " + OpenedTimeout));       
 
         private void BecomeClosed()
         {

@@ -1,6 +1,6 @@
 ﻿namespace NetMoney.MoneyModels
 {
-    using NetMoney.Core;
+    using Core;
     using System;
     using System.Collections.Generic;
 

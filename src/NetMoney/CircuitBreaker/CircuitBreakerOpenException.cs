@@ -7,7 +7,7 @@
     /// Exception thrown when circuit breaker is called while in either Open state 
     /// or in HalfOpen state for each call except the first one.
     /// </summary>
-    public class CircuitBreakerOpenException : Exception
+    internal class CircuitBreakerOpenException : Exception
     {
         public CircuitBreakerOpenException()
         {
