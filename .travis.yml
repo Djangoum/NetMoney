@@ -8,4 +8,4 @@ script:
  - dotnet build
  - cd test
  - cd NetMoney.Test
- - dotnet test /test
+ - dotnet test
