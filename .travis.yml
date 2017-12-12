@@ -1,2 +1,7 @@
 language: csharp
+mono: none
+dotnet: 1.0.3
+dist: trusty
 solution: NetMoney.sln
+script:
+ - dotnet restore
