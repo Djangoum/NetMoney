@@ -24,11 +24,26 @@ namespace NetMoney
 
         internal CircuitBreaker<ExchangeCurrencies, ExchangeRates> circuitBreaker { get; set; }
 
-        public async Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, DateTime? Date = null, params Currency[] to)
-            => await circuitBreaker.Call(new ExchangeCurrencies(From, to, Date));
+        public IConvertedCurrency From(Currency currency, decimal amount)
+            => new ConvertedCurrency(currency, amount, null, this);
 
+        public IConvertedCurrency FromDate( Currency currency, decimal amount, DateTime date)
+            => new ConvertedCurrency(currency, amount, date, this);
+
+        public Task<ExchangeRates> GetAllExchangeRatesForEuroAsync(DateTime date)
+            => circuitBreaker.Call(new ExchangeCurrencies(null, null, date));
+
+        public Task<ExchangeRates> GetAllExchangeRatesForEuroTodayAsync()
+            => circuitBreaker.Call(new ExchangeCurrencies(null, null, null));
+
+        public Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, DateTime? Date = null, params Currency[] to)
+            => circuitBreaker.Call(new ExchangeCurrencies(From, to, Date));
+        
         public async Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, params Currency[] to)
             => await circuitBreaker.Call(new ExchangeCurrencies(From, to, null));
+
+        public Task<ExchangeRates> GetExchangeRatesForEuroAsync(DateTime date, params Currency[] to)
+            => circuitBreaker.Call(new ExchangeCurrencies(null, to, date));
 
         internal async Task<ExchangeRates> GetFixerIoRates(ExchangeCurrencies exchangeCurrencies)
         {

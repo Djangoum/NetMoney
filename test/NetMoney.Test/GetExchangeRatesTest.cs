@@ -11,8 +11,8 @@ namespace NetMoney.Test
         [TestMethod]
         public async Task GetExchangeRatesAsync_With_3_To_Parameters_One_Is_Origin()
         {
-            IMoney moneySingleton = default(IMoney).Create(10, 5);
-            
+            IMoney moneySingleton = new Money(10, 5);
+
             var result = await moneySingleton.GetExchangeRatesAsync(Currency.EUR, Currency.AUD, Currency.CNY, Currency.EUR);
 
             Assert.AreEqual(result.Rates.Count, 2);
@@ -21,7 +21,7 @@ namespace NetMoney.Test
         [TestMethod]
         public async Task GetExchangeRatesAsync_With_no_To_Parameter()
         {
-            IMoney moneySingleton = default(IMoney).Create(10, 5);
+            IMoney moneySingleton = new Money(10, 5);
 
             var result = await moneySingleton.GetExchangeRatesAsync(Currency.EUR);
 
@@ -31,7 +31,7 @@ namespace NetMoney.Test
         [TestMethod]
         public async Task GetExchangeRatesAsync_With_Date()
         {
-            IMoney moneySingleton = default(IMoney).Create(10, 5);
+            IMoney moneySingleton = new Money(10, 5);
 
             var result = await moneySingleton.GetExchangeRatesAsync(Currency.EUR, DateTime.Now.AddDays(-74));
 
