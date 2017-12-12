@@ -7,7 +7,12 @@
 
     public interface IMoney
     {
-        Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, DateTime? Date = null, params Currency[] to);
-        Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, params Currency[] to);
+        IConvertedCurrency From(Currency currency, decimal amount);
+        IConvertedCurrency FromDate(Currency currency, decimal amount, DateTime date);
+        Task<ExchangeRates> GetAllExchangeRatesForEuroTodayAsync();
+        Task<ExchangeRates> GetAllExchangeRatesForEuroAsync(DateTime date);
+        Task<ExchangeRates> GetExchangeRatesForEuroAsync(DateTime date, params Currency[] to);
+        Task<ExchangeRates> GetExchangeRatesAsync(Currency? From, DateTime? Date, params Currency[] to);
+        Task<ExchangeRates> GetExchangeRatesAsync(Currency? From, params Currency[] to);
     }
 }

@@ -1,0 +1,11 @@
+language: csharp
+mono: none
+dotnet: 2.0.0
+dist: trusty
+solution: NetMoney.sln
+script:
+ - dotnet restore
+ - dotnet build
+ - cd test
+ - cd NetMoney.Test
+ - dotnet test

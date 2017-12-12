@@ -12,7 +12,9 @@ namespace NetMoney
 
     public class Money : IMoney
     {
-        internal CircuitBreaker<ExchangeCurrencies, ExchangeRates> circuitBreaker { get; set; }
+        public Money(TimeSpan? serviceTimeOut, TimeSpan? openTimeOut) : this(new CircuitBreakerConfiguration(serviceTimeOut, openTimeOut)) { }
+
+        public Money(int serviceTimeOutSeconds, int openTimeOutSeconds) : this(new TimeSpan(0, 0, serviceTimeOutSeconds), new TimeSpan(0, 0, openTimeOutSeconds)) { }
 
         internal Money(CircuitBreakerConfiguration configuration) 
             => circuitBreaker = new CircuitBreaker<ExchangeCurrencies, ExchangeRates>(
@@ -20,15 +22,28 @@ namespace NetMoney
                 configuration.ServiceTimeOut,
                 configuration.OpenTimeOut);
 
-        public Money(TimeSpan? serviceTimeOut, TimeSpan? openTimeOut) : this(new CircuitBreakerConfiguration(serviceTimeOut, openTimeOut)) { }
+        internal CircuitBreaker<ExchangeCurrencies, ExchangeRates> circuitBreaker { get; set; }
 
-        public Money(int serviceTimeOutSeconds, int openTimeOutSeconds) : this(new TimeSpan(0, 0, serviceTimeOutSeconds), new TimeSpan(0, 0, openTimeOutSeconds)) { }
+        public IConvertedCurrency From(Currency currency, decimal amount)
+            => new ConvertedCurrency(currency, amount, null, this);
 
-        public async Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, DateTime? Date = null, params Currency[] to)
-            => await circuitBreaker.Call(new ExchangeCurrencies(From, to, Date));
+        public IConvertedCurrency FromDate( Currency currency, decimal amount, DateTime date)
+            => new ConvertedCurrency(currency, amount, date, this);
 
+        public Task<ExchangeRates> GetAllExchangeRatesForEuroAsync(DateTime date)
+            => circuitBreaker.Call(new ExchangeCurrencies(null, null, date));
+
+        public Task<ExchangeRates> GetAllExchangeRatesForEuroTodayAsync()
+            => circuitBreaker.Call(new ExchangeCurrencies(null, null, null));
+
+        public Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, DateTime? Date = null, params Currency[] to)
+            => circuitBreaker.Call(new ExchangeCurrencies(From, to, Date));
+        
         public async Task<ExchangeRates> GetExchangeRatesAsync(Currency? From = null, params Currency[] to)
             => await circuitBreaker.Call(new ExchangeCurrencies(From, to, null));
+
+        public Task<ExchangeRates> GetExchangeRatesForEuroAsync(DateTime date, params Currency[] to)
+            => circuitBreaker.Call(new ExchangeCurrencies(null, to, date));
 
         internal async Task<ExchangeRates> GetFixerIoRates(ExchangeCurrencies exchangeCurrencies)
         {
