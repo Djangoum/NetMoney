@@ -2,7 +2,7 @@
 {
     public enum Currency
     {
-        EUR,
+        EUR = 1,
         AUD,
         BGN,
         BRL,

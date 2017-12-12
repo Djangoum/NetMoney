@@ -10,7 +10,7 @@
         [TestMethod]
         public void Money_From_Returns_A_Valid_From_Money()
         {
-            IMoney money = default(IMoney).Create(10, 5);
+            IMoney money = new Money(10, 5);
 
             var result = money.From(Core.Currency.EUR, 102.34m);
 
@@ -22,7 +22,7 @@
         [TestMethod]
         public async Task Money_From_To_Returns_A_Valid_Converted_Currency()
         {
-            IMoney money = default(IMoney).Create(10, 5);
+            IMoney money = new Money(10, 5);
 
             var result = await money.From(Core.Currency.EUR, 102.34m).To(Core.Currency.CNY);
 
@@ -33,7 +33,7 @@
         [TestMethod]
         public async Task Money_From_To_From_Returns_Same_Amount()
         {
-            IMoney money = default(IMoney).Create(10, 5);
+            IMoney money = new Money(10, 5);
 
             var result = await money.From(Core.Currency.EUR, 102.32m).To(Core.Currency.CNY);
 
@@ -46,7 +46,7 @@
         [TestMethod]
         public async Task Money_From_To_Multiple_Conversions()
         {
-            IMoney money = default(IMoney).Create(10, 5);
+            IMoney money = new Money(10, 5);
 
             var result = await money.From(Core.Currency.EUR, 102.32m).To(Core.Currency.CNY);
 
@@ -64,7 +64,7 @@
         [TestMethod]
         public async Task Money_From_Date()
         {
-            IMoney money = default(IMoney).Create(10, 5);
+            IMoney money = new Money(10, 5);
 
             var result = money.From(Core.Currency.EUR, 102.34m);
 

@@ -85,7 +85,7 @@
                 default: throw new NotSupportedException("Circuit breaker don't support state of " + State);
             }
         }
-
+        
         private Task<TRep> CallHalfOpen(TReq request)
         {
             // pass first call to underlying service, and block all others

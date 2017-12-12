@@ -14,7 +14,7 @@
         [TestMethod]
         public async Task Circuit_Throws_On_Timeout_Exception()
         {
-            IMoney moneySingleton = default(IMoney).Create(0, 10);
+            IMoney moneySingleton = new Money(0, 5);
             
             await Assert.ThrowsExceptionAsync<TimeoutException>(() => moneySingleton.GetExchangeRatesAsync(Currency.USD, Currency.EUR));
         }
@@ -35,7 +35,7 @@
         [TestMethod]
         public async Task Circuit_Throws_CircuitBreakerOpenException_When_Opened_By_TimeOut()
         {
-            IMoney moneySingleton = default(IMoney).Create(0, 10);
+            IMoney moneySingleton = new Money(0, 5);
 
             await Assert.ThrowsExceptionAsync<TimeoutException>(() => moneySingleton.GetExchangeRatesAsync(Currency.USD, Currency.EUR));
 
@@ -45,7 +45,7 @@
         [TestMethod]
         public async Task Circuit_Close_After_Close_TimeOut()
         {
-            IMoney moneySingleton = default(IMoney).Create(0, 3);
+            IMoney moneySingleton = new Money(0, 3); ;
 
             await Assert.ThrowsExceptionAsync<TimeoutException>(() => moneySingleton.GetExchangeRatesAsync(Currency.USD, Currency.EUR));
 
