@@ -1,10 +1,9 @@
 namespace NetMoney.Test
 {
-    using Moq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Core;
-    using System.Threading.Tasks;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Threading.Tasks;
 
     [TestClass]
     public class GetExchangeRatesTest

@@ -1,11 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NetMoney.Test
+﻿namespace NetMoney.Test
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Threading.Tasks;
+
     [TestClass]
     public class AddingAndSubstractionTest
     {

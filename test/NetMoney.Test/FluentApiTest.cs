@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Threading.Tasks;
-
-namespace NetMoney.Test
+﻿namespace NetMoney.Test
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Threading.Tasks;
+
     [TestClass]
     public class FluentApiTest
     {

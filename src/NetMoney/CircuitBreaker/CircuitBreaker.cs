@@ -101,33 +101,51 @@
         private async Task<TRep> CallClosed(TReq request, bool resetState = false)
         {
             var cancellation = new CancellationTokenSource(ServiceTimeout);
-            var serviceTask = _service(request);
-            var task = await Task.WhenAny(new Task[] { serviceTask, Task.Delay(ServiceTimeout, cancellation.Token) });
 
-            if (task == serviceTask)
+            Task<TRep> serviceTask = null;
+            Task task = null;
+
+            try
             {
-                if (task.IsFaulted)
+                serviceTask = _service(request);
+                task = await Task.WhenAny(new Task[] { serviceTask, Task.Delay(ServiceTimeout, cancellation.Token) });
+            }
+            catch (Exception ex)
+            {
+                BecomeOpen();
+                throw ex;
+            }
+            finally 
+            {
+
+                if(task != null || serviceTask != null)
                 {
-                    // if task failed, open circuit
-                    Exception exc;
-                    if (serviceTask.Exception != null)
+                    if (task == serviceTask)
                     {
-                        exc = serviceTask.Exception.InnerExceptions.First();
+                        if (task.IsFaulted)
+                        {
+                            // if task failed, open circuit
+                            Exception exc;
+                            if (serviceTask.Exception != null)
+                            {
+                                exc = serviceTask.Exception.InnerExceptions.First();
+                                throw exc;
+                            }
+                        }
+
+                        if (resetState) BecomeClosed();
+                    }
+                    else
+                    {
+                        // when task didn't finish in specified timeout, open circuit
                         BecomeOpen();
-                        throw exc;
+                        throw new TimeoutException(string.Format("Circuit breaker timed out while waiting for underlying service to finish in {0} timeout", ServiceTimeout));
                     }
                 }
-
-                if (resetState) BecomeClosed();
-
-                return serviceTask.Result;
             }
-            else
-            {
-                // when task didn't finish in specified timeout, open circuit
-                BecomeOpen();
-                throw new TimeoutException(string.Format("Circuit breaker timed out while waiting for underlying service to finish in {0} timeout", ServiceTimeout));
-            }
+
+            return serviceTask.Result;
+
         }
 
         private async Task<TRep> CallOpen(TReq request)
