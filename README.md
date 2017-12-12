@@ -1,7 +1,8 @@
 # NetMoney
 
 [![Scrutinizer Build](https://img.shields.io/scrutinizer/build/g/filp/whoops.svg)](https://www.nuget.org/packages/NetMoney/)
-[![nuget](https://img.shields.io/badge/nuget-v0.0.5-orange.svg)](https://www.nuget.org/packages/NetMoney/)
+[![nuget](https://img.shields.io/badge/nuget-v0.0.7-orange.svg)](https://www.nuget.org/packages/NetMoney/)
+[![Build status](https://ci.appveyor.com/api/projects/status/aftis2sh7g6thse9?svg=true)](https://ci.appveyor.com/project/Djangoum/netmoney)
 
 NetMoney is an open source library focused on making currency exchange rating an easy and safe task for .NET developers. 
 
